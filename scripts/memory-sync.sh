@@ -47,7 +47,7 @@ if [ ! -x "$BIN" ]; then
 fi
 
 sub="${1:-status}"
-[ $# -gt 0 ] && shift || true
+if [ $# -gt 0 ]; then shift; fi
 
 # map user-facing subcommands to the binary; pass --cwd for checkpoint/restore
 case "$sub" in

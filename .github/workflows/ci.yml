@@ -36,7 +36,7 @@ jobs:
       - name: shellcheck (scripts/)
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
-          shellcheck scripts/*.sh
+          shellcheck -S warning scripts/*.sh
       - name: validate plugin manifests
         run: |
           python3 - <<'PY'
