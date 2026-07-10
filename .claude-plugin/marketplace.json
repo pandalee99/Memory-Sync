@@ -1,0 +1,12 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "memory-sync",
+  "owner": { "name": "PAN" },
+  "plugins": [
+    {
+      "name": "memory-sync",
+      "source": "./",
+      "description": "Checkpoint and restore Claude Code session memory across machines"
+    }
+  ]
+}

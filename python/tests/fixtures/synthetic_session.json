@@ -1,0 +1,7 @@
+[
+  {"type": "user", "uuid": "u1", "parentUuid": null, "cwd": "/home/alice/code/h100", "message": {"role": "user", "content": [{"type": "text", "text": "working in /home/alice/code/h100; config at /home/alice/code/h100/c.yaml; token=bsk-ant-FAKEFAKEFAKEFAKEFAKEFAKE"}]}},
+  {"type": "assistant", "uuid": "a1", "parentUuid": "u1", "message": {"role": "assistant", "content": [{"type": "text", "text": "noted /home/alice/code/h100"}]}},
+  {"type": "file-history-snapshot", "parentUuid": null},
+  {"type": "queue-operation", "parentUuid": null},
+  {"type": "user", "uuid": "u2", "parentUuid": "a1", "message": {"role": "user", "content": [{"type": "text", "text": "next step"}]}}
+]

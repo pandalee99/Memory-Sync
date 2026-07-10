@@ -1,0 +1,50 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    # The macOS leg is experimental: a known intermittent git-subprocess /
+    # t.TempDir-cleanup race (not CI-blocking on ubuntu). Ubuntu is the required
+    # gate; macOS failures don't fail the workflow.
+    continue-on-error: ${{ matrix.os == 'macos-latest' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+      - run: go vet ./...
+        working-directory: go
+      - run: |
+          out="$(gofmt -l .)"; [ -z "$out" ] || { echo "::error::gofmt dirty:"; echo "$out"; gofmt -d .; exit 1; }
+        working-directory: go
+      - run: go test -race ./...
+        working-directory: go
+      - run: go build ./cmd/memory-sync
+        working-directory: go
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: shellcheck (scripts/)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq shellcheck
+          shellcheck scripts/*.sh
+      - name: validate plugin manifests
+        run: |
+          python3 - <<'PY'
+          import json
+          for f, reqs in [('.claude-plugin/plugin.json', {'name', 'description'}),
+                          ('.claude-plugin/marketplace.json', {'name', 'plugins'})]:
+              d = json.load(open(f))
+              missing = reqs - set(d)
+              assert not missing, f'{f} missing required fields: {missing}'
+              print(f'{f}: OK ({sorted(reqs)})')
+          PY

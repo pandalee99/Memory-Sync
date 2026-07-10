@@ -1,0 +1,19 @@
+# Memory-Sync per-project config. Copy to `.memory-sync.toml` and fill in.
+# (.memory-sync.toml is gitignored — it holds your sync-store URL.)
+#
+# Run `memory-sync install --url <your-sync-store-url>` to write this, or
+# `/memory-sync install` via the Claude Code plugin (which bootstraps the binary
+# + writes this for you).
+#
+# The sync-store: a PRIVATE git repo that holds your session checkpoints
+# (plaintext transcripts in this release — keep the repo private). age-encryption
+# is a planned hardening (future), not required now.
+
+project_id = "my-project"   # any stable id; `install` defaults to a hash of the url
+
+[store]
+backend = "git"
+# REQUIRED: a PRIVATE git repo holding your checkpoints. Separate from your
+# project's own repo (which may be public). `memory-sync checkpoint` pushes here;
+# `memory-sync restore` pulls here.
+url = "git@github.com:you/your-msync-store.git"

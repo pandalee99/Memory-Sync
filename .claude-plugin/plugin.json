@@ -1,0 +1,8 @@
+{
+  "name": "memory-sync",
+  "description": "Checkpoint and restore Claude Code session memory across machines",
+  "version": "0.1.0",
+  "author": { "name": "PAN", "email": "pandali.kk@qq.com" },
+  "homepage": "https://github.com/pandalee99/Memory-Sync",
+  "repository": "https://github.com/pandalee99/Memory-Sync"
+}

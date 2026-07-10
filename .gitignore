@@ -1,0 +1,35 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+python/.venv/
+
+# Go
+go/bin/
+go/vendor/
+*.exe
+/go/memory-sync
+
+# OS
+.DS_Store
+
+# === NEVER EXPOSE (local-only) ===
+# Internal design docs / specs / findings
+docs/
+# Real session transcripts — contain code + secrets. Synthetic test data uses .json, not .jsonl.
+*.jsonl
+# But synthetic testdata fixtures (.jsonl) ARE safe to commit (placeholder content).
+!go/memorysync/testdata/*.jsonl
+tests/fixtures/real/
+# Per-project Memory-Sync config — contains the sync-store URL + member age pubkeys
+.memory-sync.toml
+# Age identity keys (secrets — never commit)
+*.agekey
+*age-identity*
+AGE-SECRET-KEY*
+# Env / scratch
+.env
+.env.*
+scratch/
+.superpowers/
