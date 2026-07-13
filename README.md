@@ -11,15 +11,15 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-7c3aed?logo=anthropic&logoColor=white)](https://claude.com/claude-code)
 
-A non-invasive adapter on Claude Code's own `--resume` — no fork, no cloud (for checkpoint mode).
+A non-invasive adapter on Claude Code's own `--resume` — no fork, no cloud.
 
 </div>
 
 ---
 
-## The problem it solves
+## The problem
 
-You've been working with Claude Code for hours on machine A — deep in a task, full context loaded. You switch to machine B, and **all of that context is gone**. You start over: re-explain, re-paste files, re-build the mental model.
+You've been working with Claude Code for hours on machine A — deep in a task, full context loaded. You switch to machine B, and all of that context is gone. You start over: re-explain, re-paste files, re-build the mental model.
 
 **Memory-Sync fixes this.** Save the session on A, restore on B, resume with the full history — `claude --resume` loads everything, paths auto-rewritten to B's layout.
 
@@ -37,21 +37,15 @@ In Claude Code:
 
 That's it — save on machine A, restore on machine B, resume with full history.
 
-## Demo
-
-<!-- TODO: add a demo GIF — save on machine A → /memory-sync restore + claude --resume on machine B -->
-
-*A demo GIF is coming. For now, the [Quickstart](#quickstart) above is the whole flow — 3 commands.*
-
 ## Features
 
-- 🔄 **Cross-machine resume** — save a Claude Code session, restore on another machine, resume with full history (paths auto-rewritten to the target layout).
-- 🔒 **Private sync-store** — your sessions live in *your* private git repo. No cloud, no third party. The install **refuses a public sync-store** (transcripts may contain secrets — see [SECURITY.md](SECURITY.md)).
-- 🎯 **Auto-detect** — `save` checkpoints the current session automatically (no manual uuid lookup).
-- 🔐 **SHA256-verified binary** — the bootstrap downloads the binary from GitHub Releases and verifies its checksum before executing (supply-chain safety).
-- 🧩 **Claude Code plugin** — one-command install via the plugin marketplace; `/memory-sync` slash command.
-- 📦 **Single zero-dep binary** — pure Go, cross-compiled (darwin/linux × amd64/arm64).
-- 🗜️ **Gzip compression** for transcripts >1MB; 50/100MB bundle-size gate.
+- **Cross-machine resume** — save a Claude Code session, restore on another machine, resume with full history (paths auto-rewritten to the target layout).
+- **Private sync-store** — your sessions live in your own private git repo. No cloud, no third party. The install refuses a public sync-store (transcripts may contain secrets).
+- **Auto-detect** — `save` checkpoints the current session automatically (no manual uuid lookup).
+- **SHA256-verified binary** — the bootstrap downloads the binary from GitHub Releases and verifies its checksum before executing.
+- **Claude Code plugin** — one-command install via the plugin marketplace; `/memory-sync` slash command.
+- **Single zero-dep binary** — pure Go, cross-compiled (darwin/linux × amd64/arm64).
+- **Gzip compression** for transcripts >1MB; 50/100MB bundle-size gate.
 
 ## How it works
 
@@ -64,18 +58,18 @@ No fork, no cloud — a non-invasive adapter on Claude Code's own `--resume`. Th
 
 ## Why not just copy the transcript?
 
-You *could* manually copy `~/.claude/projects/.../<uuid>.jsonl` to machine B. But:
+You could manually copy `~/.claude/projects/.../<uuid>.jsonl` to machine B. But:
 
-- ❌ **Paths break** — they're hard-coded to A's layout (`/Users/you/...`); `--resume` on B loads broken paths.
-- ❌ **No memory sync** — your `MEMORY.md` + memory files don't transfer.
-- ❌ **Manual & error-prone** — no checksums, no compression, no automation.
+- **Paths break** — they're hard-coded to A's layout (`/Users/you/...`); `--resume` on B loads broken paths.
+- **No memory sync** — your `MEMORY.md` + memory files don't transfer.
+- **Manual & error-prone** — no checksums, no compression, no automation.
 
-Memory-Sync **rewrites the paths** to B's layout, syncs your memory dir, and automates the whole flow — with checksum-verified binaries and a private sync-store.
+Memory-Sync rewrites the paths to B's layout, syncs your memory dir, and automates the whole flow — with checksum-verified binaries and a private sync-store.
 
 ## Status
 
-- ✅ v0.1.0: install + save + restore + status (stable).
-- 🔜 Planned: compact-restore (bounded resume for large sessions on tight-context providers).
+- **v0.1.0** — install + save + restore + status (stable).
+- **Planned** — compact-restore (bounded resume for large sessions on tight-context providers).
 
 See the [CHANGELOG](CHANGELOG.md) + [SECURITY](SECURITY.md).
 
@@ -98,6 +92,6 @@ See the [CHANGELOG](CHANGELOG.md) + [SECURITY](SECURITY.md).
 
 <div align="center">
 
-⭐ **If Memory-Sync saves you context-switching time, [star the repo](https://github.com/pandalee99/Memory-Sync/stargazers)** — it helps others find it.
+**If Memory-Sync saves you context-switching time, [star the repo](https://github.com/pandalee99/Memory-Sync/stargazers) — it helps others find it.**
 
 </div>
